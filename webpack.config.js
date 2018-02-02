@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const inProduction = (process.env.NODE_ENV == 'inProduction');
+const inProduction = (process.env.NODE_ENV === 'inProduction');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -11,7 +11,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: {
-    rule: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -22,12 +22,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use:['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   plugins: [],
-}
+};
 
 if (inProduction) {
   module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin());

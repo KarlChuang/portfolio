@@ -3,11 +3,21 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=production node dist/lib/index.js",
+    "serve": "nodemon lib/index.js",
+    "lint": "eslint .",
+    "build": "webpack",
+    "build:watch": "yarn build -- --watch",
+    "build:production": "NODE_ENV=production yarn build ; babel lib -d dist/lib"
+  },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
@@ -17,6 +27,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-latest": "^6.24.1",
@@ -30,13 +41,5 @@
     "nodemon": "^1.14.11",
     "style-loader": "^0.20.1",
     "webpack": "^3.10.0"
-  },
-  "scripts": {
-    "start": "NODE_ENV=production node dist/lib/index.js",
-    "serve": "nodemon lib/index.js",
-    "lint": "eslint .",
-    "build": "webpack",
-    "build:watch": "yarn build -- --watch",
-    "build:production": "NODE_ENV=production yarn build ; babel lib -d dist/lib"
   }
 }
