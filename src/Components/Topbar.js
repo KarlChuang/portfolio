@@ -2,34 +2,69 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Topbarwrapper = styled.div`
+const Topfix = styled.div`
   width: 100%;
-  height: 90px;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  @media (max-width: 350px) {
-    flex-direction: column;
-    height: 50px;
-    justify-content: space-between;
-  }
+  position: fixed;
+  background-color: rgba(235, 235, 235, 0.8);
+  box-shadow: 0px 4px 21px -1px #ccc;
+  ${
+    props => props.page == 'about' ? `
+      height: 100%;
+    ` : `
+    `
+  };
 `;
 
-const Name = styled(Topbarwrapper)`
-  font-size: 30px;
+const Topbarwrapper = styled.div`
+  width: 100%;
+  text-align: center; 
+  display: flex;
+  align-items: center;
+  ${
+    props => props.page == 'about' ? `
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      height: 100%;
+    ` : `
+      height: 90px;
+      flex-direction: row;
+      justify-content: space-around;
+      @media (max-width: 350px) {
+        flex-direction: column;
+        height: 50px;
+        justify-content: space-between;
+      }
+    `
+  }; 
+`;
+
+const Name = styled.div`
+  color: black;
+  display: flex;
+  justify-content: space-around;
   padding-right: 20px;
   padding-left: 30px;
-  width: 140px;
-  text-align: left;
   font-family: 'Josefin Slab', serif;
   letter-spacing: 1px;
-  @media (max-width: 350px) {
-    flex-grow: 2;
-    width: 100%;
-    font-size: 18px;
-  }
+  cursor: default;
+  ${
+    props => props.page == 'about' ? `
+      flex-grow: 1;
+      width: 80%;
+      font-size: 60px;
+      padding-top: 17%;
+      text-align: center;
+    ` : `
+      text-align: left;
+      width: 140px;
+      font-size: 30px;      
+      @media (max-width: 350px) {
+        flex-grow: 2;
+        width: 100%;
+        font-size: 18px;
+      }
+    `
+  };
 `;
 
 const Tools = styled(Topbarwrapper)`
@@ -38,18 +73,25 @@ const Tools = styled(Topbarwrapper)`
   align-items: center;
   justify-content: flex-end;
   flex-grow: 1;
-  @media (max-width: 350px) {
-    width: 100%;
-    justify-content: space-around;
-  }
+  ${
+    props => props.page == 'about' ? `
+      flex-grow: 0;
+      height: 90px;
+    ` : `
+      @media (max-width: 350px) {
+        width: 100%;
+        justify-content: space-around;
+      }
+    `
+  };
 `;
 
 const Toolbutton = styled(Link)`
   text-decoration: unset;
   margin: 20px;
   font-size: 20px;
-  color: rgb(160, 160, 160);
-  cursor: pointer;
+  color: ${props => (props.toggle == 1 ? 'black' : 'rgb(160, 160, 160)')};
+  cursor: ${props => (props.toggle == 1 ? 'default' : 'pointer')};
   transition: color 0.2s;
   font-family: 'Josefin Slab', serif;
   &:hover {
@@ -67,15 +109,28 @@ const Line = styled.div`
   height: 20px;
 `;
 
-const Topbar = () => (
-  <Topbarwrapper>
-    <Name>Karl Chuang</Name>
-    <Tools>
-      <Toolbutton to='/about'>About</Toolbutton>
-      <Line />
-      <Toolbutton to='/project'>Project</Toolbutton>
-    </Tools>
-  </Topbarwrapper>
+const Info = styled.div`
+  flex-grow: 6;
+`;
+
+const Topbar = ({
+  page,
+  aboutRequest,
+  projectRequest,
+}) => (
+  <Topfix page={page}>
+    <Topbarwrapper page={page}>
+      {
+        (page == 'about') ? (<Info>Info</Info>) : null
+      }
+      <Name page={page}>Karl Chuang</Name>
+      <Tools page={page}>
+        <Toolbutton toggle={page=='about' ? 1 : 0} onClick={aboutRequest} to='/'>About</Toolbutton>
+        <Line />
+        <Toolbutton toggle={page=='project' ? 1 : 0} onClick={projectRequest} to='/project'>Projects</Toolbutton>
+      </Tools>
+    </Topbarwrapper>
+  </Topfix>
 );
 
 export default Topbar;
