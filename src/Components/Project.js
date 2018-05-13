@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const Contentwrapper = styled.div`
@@ -9,10 +9,18 @@ const Contentwrapper = styled.div`
   overflow: scroll;
 `;
 
-const Project = () => (
-  <Contentwrapper>
-    Project
-  </Contentwrapper>
-);
+class Project extends Component {
+  constructor(props) {
+    super(props);
+    props.projectRequest();
+  }
+  render() {
+    return(
+      <Contentwrapper>
+        Project
+      </Contentwrapper>
+    );
+  }
+}
 
 export default Project;

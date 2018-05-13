@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 // import HomeContainer from '../Containers/HomeContainer';
 import TopbarContainer from '../Containers/Topbar';
-import Project from './Project';
+import Project from '../Containers/Project';
+import Dummy from '../Containers/Dummy';
 
 const Rootwrapper = styled.div`
   width: inherit;
@@ -12,16 +13,6 @@ const Rootwrapper = styled.div`
   text-align: center;
   flex-direction: column;
 `;
-
-// const Topfix = styled.div`
-//   width: 100%;
-//   position: fixed;
-//   background-color: rgba(235, 235, 235, 0.8);
-//   box-shadow: 0px 4px 21px -1px #ccc;
-//   @media (max-width: 350px) {
-//     width: 100%;
-//   }
-// `;
 
 const Contentblock = styled.div`
   padding: 60px;
@@ -31,13 +22,13 @@ const Contentblock = styled.div`
   }
 `;
 
-
 const Root = () => (
   <BrowserRouter>
     <Rootwrapper>
       <TopbarContainer />
       <Contentblock>
         <Switch>
+          <Route exact path='/' component={Dummy} />
           <Route exact path='/project' component={Project} />          
         </Switch>
       </Contentblock>

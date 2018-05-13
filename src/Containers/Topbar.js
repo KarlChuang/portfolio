@@ -10,12 +10,6 @@ const mapStateToLinkProps = ({ page }) => ({
   page
 });
 
-const mapDispatchToLinkProps = dispatch => ({
-  aboutRequest: () => dispatch(CHANGE_TO_PAGE_ABOUT()),
-  projectRequest: () => dispatch(CHANGE_TO_PAGE_PROJECT()),
-});
-
 export default connect(
   mapStateToLinkProps,
-  mapDispatchToLinkProps,
 )(Topbar);

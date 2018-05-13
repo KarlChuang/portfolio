@@ -10,6 +10,15 @@ const Topfix = styled.div`
   ${
     props => props.page == 'about' ? `
       height: 100%;
+      @keyframes Spandown {
+        0% {
+          height: 90px;
+        }
+        100% {
+          height: 100%;
+        }
+      }
+      animation: Spandown 0.5s ease-in-out;
     ` : `
     `
   };
@@ -25,13 +34,26 @@ const Topbarwrapper = styled.div`
       flex-direction: column-reverse;
       justify-content: flex-start;
       height: 100%;
+      @keyframes Spanwrapper {
+        0%, 50% {
+          height: 90px;
+          flex-direction: row;
+          justify-content: space-around;
+        }
+        51%, 100% {
+          flex-direction: column-reverse;
+          justify-content: flex-start;
+          height: 100%;
+        }
+      }
+      animation: Spanwrapper 1s ease-in-out;
     ` : `
       height: 90px;
       flex-direction: row;
       justify-content: space-around;
       @media (max-width: 350px) {
         flex-direction: column;
-        height: 50px;
+        height: 40px;
         justify-content: space-between;
       }
     `
@@ -49,17 +71,52 @@ const Name = styled.div`
   cursor: default;
   ${
     props => props.page == 'about' ? `
+      @keyframes Spanname {
+        0% {
+          flex-grow: 0;
+          text-align: left;
+          width: 140px;
+          font-size: 30px;
+          padding-top: 0;
+          opacity: 1;
+        }
+        40%, 50% {
+          flex-grow: 0;
+          text-align: left;
+          width: 140px;
+          font-size: 30px;
+          padding-top: 0;
+          opacity: 0;
+        }
+        51% {
+          flex-grow: 1;
+          width: 80%;
+          font-size: 60px;
+          padding-top: 100px;
+          text-align: center;
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      animation: Spanname 1s ease-in-out;
       flex-grow: 1;
       width: 80%;
       font-size: 60px;
-      padding-top: 17%;
+      padding-top: 100px;
       text-align: center;
+      @media (max-width: 420px) {
+        font-size: 40px;
+        padding-top: 30px;
+      }
     ` : `
       text-align: left;
       width: 140px;
       font-size: 30px;      
       @media (max-width: 350px) {
-        flex-grow: 2;
+        display: none;
+        flex-grow: 1;
         width: 100%;
         font-size: 18px;
       }
@@ -77,6 +134,16 @@ const Tools = styled(Topbarwrapper)`
     props => props.page == 'about' ? `
       flex-grow: 0;
       height: 90px;
+      @keyframes Spantools {
+        0%, 50% {
+          flex-grow: 1;
+        }
+        51%, 100% {
+          flex-grow: 0;
+          height: 90px;
+        }
+      }
+      animation: Spantools 1s ease-in-out;
     ` : `
       @media (max-width: 350px) {
         width: 100%;
@@ -100,6 +167,8 @@ const Toolbutton = styled(Link)`
   }
   @media (max-width: 350px) {
     font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -111,13 +180,30 @@ const Line = styled.div`
 
 const Info = styled.div`
   flex-grow: 6;
+  @keyframes Spaninfo {
+    0%, 50% {
+      width: 0;
+      opacity: 0;
+      display: none;
+    }
+    51% {
+      width: auto;      
+      opacity: 0;
+      display: default;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  animation: Spaninfo 1s ease-in-out;
+  ${
+    props => props.page == 'about' ? `
+    ` : `
+    `
+  }
 `;
 
-const Topbar = ({
-  page,
-  aboutRequest,
-  projectRequest,
-}) => (
+const Topbar = ({ page }) => (
   <Topfix page={page}>
     <Topbarwrapper page={page}>
       {
@@ -125,9 +211,9 @@ const Topbar = ({
       }
       <Name page={page}>Karl Chuang</Name>
       <Tools page={page}>
-        <Toolbutton toggle={page=='about' ? 1 : 0} onClick={aboutRequest} to='/'>About</Toolbutton>
+        <Toolbutton toggle={page=='about' ? 1 : 0} to='/'>About</Toolbutton>
         <Line />
-        <Toolbutton toggle={page=='project' ? 1 : 0} onClick={projectRequest} to='/project'>Projects</Toolbutton>
+        <Toolbutton toggle={page=='project' ? 1 : 0} to='/project'>Projects</Toolbutton>
       </Tools>
     </Topbarwrapper>
   </Topfix>
