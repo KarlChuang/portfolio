@@ -11,15 +11,30 @@ const Topfix = styled.div`
     props => props.page == 'about' ? `
       height: 100%;
       @keyframes Spandown {
-        0% {
-          height: 90px;
-        }
-        100% {
-          height: 100%;
-        }
+        0% {height: 90px;}
+        100% {height: 100%;}
+      }
+      @keyframes Spandown2 {
+        0% {height: 40px;}
+        100% {height: 100%;}
       }
       animation: Spandown 0.5s ease-in-out;
+      @media (max-width: 420px) {
+        animation: Spandown2 0.5s ease-in-out;
+      }
     ` : `
+      @keyframes SpanUp {
+        0% {height: 100%;}
+        100% {height: 90px;}
+      }
+      @keyframes SpanUp2 {
+        0% {height: 100%;}
+        100% {height: 40px;}
+      }
+      animation: SpanUp 0.5s ease-in-out;
+      @media (max-width: 420px) {
+        animation: SpanUp2 0.5s ease-in-out;
+      }
     `
   };
 `;
@@ -35,23 +50,15 @@ const Topbarwrapper = styled.div`
       justify-content: flex-start;
       height: 100%;
       @keyframes Spanwrapper {
-        0%, 50% {
-          height: 90px;
-          flex-direction: row;
-          justify-content: space-around;
-        }
-        51%, 100% {
-          flex-direction: column-reverse;
-          justify-content: flex-start;
-          height: 100%;
-        }
+        0%, 50% {height: 90px;flex-direction: row;justify-content: space-around;}
+        51%, 100% {flex-direction: column-reverse;justify-content: flex-start;height: 100%;}
       }
       animation: Spanwrapper 1s ease-in-out;
     ` : `
       height: 90px;
       flex-direction: row;
       justify-content: space-around;
-      @media (max-width: 350px) {
+      @media (max-width: 420px) {
         flex-direction: column;
         height: 40px;
         justify-content: space-between;
@@ -72,33 +79,14 @@ const Name = styled.div`
   ${
     props => props.page == 'about' ? `
       @keyframes Spanname {
-        0% {
-          flex-grow: 0;
-          text-align: left;
-          width: 140px;
-          font-size: 30px;
-          padding-top: 0;
-          opacity: 1;
-        }
-        40%, 50% {
-          flex-grow: 0;
-          text-align: left;
-          width: 140px;
-          font-size: 30px;
-          padding-top: 0;
-          opacity: 0;
-        }
-        51% {
-          flex-grow: 1;
-          width: 80%;
-          font-size: 60px;
-          padding-top: 100px;
-          text-align: center;
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
+        0%, 50% {flex-grow: 0;text-align: left;width: 140px;font-size: 30px;padding-top: 0;opacity: 0;}
+        51% {flex-grow: 1;width: 80%;font-size: 60px;padding-top: 100px;text-align: center;opacity: 0;}
+        100% {opacity: 1;}
+      }
+      @keyframes Spanname2 {
+        0%, 50% { display: none; flex-grow: 0;text-align: left;width: 140px;font-size: 40px;padding-top: 0;opacity: 0;}
+        51% {flex-grow: 1;width: 80%;font-size: 40px;padding-top: 30px;text-align: center;opacity: 0;}
+        90%, 100% {opacity: 1;}
       }
       animation: Spanname 1s ease-in-out;
       flex-grow: 1;
@@ -109,12 +97,18 @@ const Name = styled.div`
       @media (max-width: 420px) {
         font-size: 40px;
         padding-top: 30px;
+        animation: Spanname2 1s ease-in-out;
       }
     ` : `
       text-align: left;
       width: 140px;
-      font-size: 30px;      
-      @media (max-width: 350px) {
+      font-size: 30px;
+      @keyframes SpannameUp {
+        0%, 20% {opacity: 0;}
+        60%, 100% { opacity: 1;}
+      }
+      animation: SpannameUp 1s ease-in-out; 
+      @media (max-width: 420px) {
         display: none;
         flex-grow: 1;
         width: 100%;
@@ -135,19 +129,27 @@ const Tools = styled(Topbarwrapper)`
       flex-grow: 0;
       height: 90px;
       @keyframes Spantools {
-        0%, 50% {
-          flex-grow: 1;
-        }
-        51%, 100% {
-          flex-grow: 0;
-          height: 90px;
-        }
+        0%, 50% {flex-grow: 1;}
+        51%, 100% {flex-grow: 0;height: 90px;}
+      }
+      @keyframes Spantools2 {
+        0%, 50% {flex-grow: 1; opacity: 0;}
+        51% {flex-grow: 0;height: 90px;opacity: 0;}
+        100% {opacity: 1;}
       }
       animation: Spantools 1s ease-in-out;
+      @media (max-width: 420px) {
+        animation: Spantools2 1s ease-in-out;
+      }
     ` : `
-      @media (max-width: 350px) {
+      @keyframes SpantoolsUp {
+        0%, 20% { opacity: 0;}
+        60%, 100% {opacity: 1;}
+      }
+      @media (max-width: 420px) {
         width: 100%;
         justify-content: space-around;
+        animation: SpantoolsUp 1s ease-in-out;
       }
     `
   };
@@ -165,7 +167,7 @@ const Toolbutton = styled(Link)`
     color: black;
     transition: color 0.4s;
   }
-  @media (max-width: 350px) {
+  @media (max-width: 420px) {
     font-size: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -181,19 +183,9 @@ const Line = styled.div`
 const Info = styled.div`
   flex-grow: 6;
   @keyframes Spaninfo {
-    0%, 50% {
-      width: 0;
-      opacity: 0;
-      display: none;
-    }
-    51% {
-      width: auto;      
-      opacity: 0;
-      display: default;
-    }
-    100% {
-      opacity: 1;
-    }
+    0%, 50% {width: 0;opacity: 0;display: none;}
+    70% {width: auto;opacity: 0;display: default;}
+    100% {opacity: 1;}
   }
   animation: Spaninfo 1s ease-in-out;
   ${

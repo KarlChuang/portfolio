@@ -7,6 +7,11 @@ const Contentwrapper = styled.div`
   font-size: 24px;
   font-family: 'Josefin Slab', serif;
   overflow: scroll;
+  @keyframes SpanContentUp {
+    0%, 50% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+  animation: SpanContentUp 1s ease-in-out;
 `;
 
 class Project extends Component {

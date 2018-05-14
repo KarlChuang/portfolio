@@ -17,7 +17,7 @@ const Rootwrapper = styled.div`
 const Contentblock = styled.div`
   padding: 60px;
   padding-top: 140px;
-  @media (max-width: 350px) {
+  @media (max-width: 420px) {
     padding-top: 75px;
   }
 `;
