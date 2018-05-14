@@ -203,9 +203,9 @@ const Topbar = ({ page }) => (
       }
       <Name page={page}>Karl Chuang</Name>
       <Tools page={page}>
-        <Toolbutton toggle={page=='about' ? 1 : 0} to='/'>About</Toolbutton>
+        <Toolbutton toggle={page == 'about' ? 1 : 0} to='/portfolio'>About</Toolbutton>
         <Line />
-        <Toolbutton toggle={page=='project' ? 1 : 0} to='/project'>Projects</Toolbutton>
+        <Toolbutton toggle={page == 'project' ? 1 : 0} to='/portfolio/project'>Projects</Toolbutton>
       </Tools>
     </Topbarwrapper>
   </Topfix>
