@@ -28,8 +28,8 @@ const Root = () => (
       <TopbarContainer />
       <Contentblock>
         <Switch>
-          <Route exact path='/' component={Dummy} />
-          <Route exact path='/project' component={Project} />          
+          <Route exact path='/portfolio/' component={Dummy} />
+          <Route exact path='/portfolio/project' component={Project} />          
         </Switch>
       </Contentblock>
     </Rootwrapper>
