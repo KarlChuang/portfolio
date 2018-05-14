@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "build": "webpack",
     "build:watch": "yarn build -- --watch",
-    "build:production": "NODE_ENV=production yarn build ; babel lib -d dist/lib",
-    "build:gh-pages": "cp dist/bundle/bundle.js public/bundle.js"
+    "build:production": "NODE_ENV=production yarn build ; babel lib -d dist/lib"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
