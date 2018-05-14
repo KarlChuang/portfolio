@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const inProduction = (process.env.NODE_ENV === 'inProduction');
+const inProduction = (process.env.NODE_ENV === 'production');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -32,8 +32,6 @@ module.exports = {
 if (inProduction) {
   module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin());
   module.exports.plugins.push(new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify('production'),
-    },
+    'process.env.NODE_ENV': JSON.stringify('production'),
   }));
 }
