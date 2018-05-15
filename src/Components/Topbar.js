@@ -85,7 +85,7 @@ const Name = styled.div`
         100% {opacity: 1;}
       }
       @keyframes Spanname2 {
-        0%, 50% { display: none; flex-grow: 0;text-align: left;width: 140px;font-size: 40px;padding-top: 0;opacity: 0;}
+        0%, 50% {height: 0;display: none; flex-grow: 0;text-align: left;width: 140px;font-size: 40px;padding-top: 0;opacity: 0;}
         51% {flex-grow: 1;width: 80%;font-size: 40px;padding-top: 30px;text-align: center;opacity: 0;}
         90%, 100% {opacity: 1;}
       }
