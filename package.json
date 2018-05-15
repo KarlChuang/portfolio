@@ -10,7 +10,7 @@
     "build": "webpack",
     "build:watch": "yarn build -- --watch",
     "build:production": "NODE_ENV=production yarn build ; babel lib -d dist/lib",
-    "build:gh-pages": "cp public/index.html docs/index.html; cp dist/bundle/bundle.js docs/bundle.js"
+    "deploy": "cp public/index.html docs/index.html; cp dist/bundle/bundle.js docs/bundle.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
