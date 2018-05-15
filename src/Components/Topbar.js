@@ -46,14 +46,14 @@ const Topbarwrapper = styled.div`
   align-items: center;
   ${
     props => props.page == 'about' ? `
-      flex-direction: column-reverse;
-      justify-content: flex-start;
-      height: 100%;
-      @keyframes Spanwrapper {
-        0%, 50% {height: 90px;flex-direction: row;justify-content: space-around;}
-        51%, 100% {flex-direction: column-reverse;justify-content: flex-start;height: 100%;}
-      }
-      animation: Spanwrapper 1s ease-in-out;
+    @keyframes Spanwrapper {
+      0%, 50% {display: box;height: 120px;justify-content: space-around;}
+      51%, 100% {flex-direction: column-reverse;justify-content: flex-start;height: 100%;}
+    }
+    animation: Spanwrapper 1s ease-in-out;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    height: 100%;
     ` : `
       height: 90px;
       flex-direction: row;
@@ -76,10 +76,11 @@ const Name = styled.div`
   font-family: 'Josefin Slab', serif;
   letter-spacing: 1px;
   cursor: default;
+  overflow: hidden;
   ${
     props => props.page == 'about' ? `
       @keyframes Spanname {
-        0%, 50% {flex-grow: 0;text-align: left;width: 140px;font-size: 30px;padding-top: 0;opacity: 0;}
+        0%, 50% {height: 0;flex-grow: 0;text-align: left;width: 140px;font-size: 30px;padding-top: 0;opacity:0;}
         51% {flex-grow: 1;width: 80%;font-size: 60px;padding-top: 100px;text-align: center;opacity: 0;}
         100% {opacity: 1;}
       }
